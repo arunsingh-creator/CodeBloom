@@ -101,17 +101,16 @@ Advanced prediction using symptoms, flow intensity, and lifestyle factors for hi
       "cycle_length": 28,
       "date": "2024-11-15",
       "symptoms": {
-        "cramps": 3,           # 0-5 scale
-        "mood_changes": 2,     # 0-5 scale
-        "energy_level": 4      # 0-5 scale
+        "cramps": 3,           
+        "mood_changes": 2,     
+        "energy_level": 4      
       },
-      "flow_intensity": "medium", # light, medium, heavy
+      "flow_intensity": "medium", 
       "lifestyle": {
-        "stress_level": 2,     # 0-5 scale
-        "sleep_quality": 5     # 0-5 scale
+        "stress_level": 2,  
+        "sleep_quality": 5    
       }
     }
-    # Add more cycle records...
   ],
   "last_period_date": "2025-03-09",
   "framework": "pytorch"

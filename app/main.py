@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.routers import chatbot_router, prediction_router
+from app.routers import chatbot_router, prediction_router, pcos_router
 from app.config import GROQ_API_KEY, MODEL_NAME
 from app.ml.model_factory import get_framework_availability
 from app.utils.logging import logger, log_info
@@ -42,6 +42,7 @@ app.add_middleware(
 # Include routers
 app.include_router(chatbot_router)
 app.include_router(prediction_router)
+app.include_router(pcos_router)
 
 
 @app.get("/")
@@ -55,7 +56,8 @@ async def root():
         "timestamp": datetime.now().isoformat(),
         "features": {
             "chatbot": "Available at /chat",
-            "cycle_prediction": "Available at /predict"
+            "cycle_prediction": "Available at /predict",
+            "pcos_risk": "Available at /pcos/risk-assessment"
         },
         "docs": "/docs",
         "health": "/health"
@@ -120,6 +122,7 @@ if __name__ == "__main__":
     print("ENDPOINTS:")
     print("  💬 Chatbot: POST /chat")
     print("  📊 Cycle Prediction: POST /predict")
+    print("  ⚠️  PCOS Risk: POST /pcos/risk-assessment")
     print("  ❤️  Health Check: GET /health")
     print("=" * 70)
     

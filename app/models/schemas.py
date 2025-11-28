@@ -177,3 +177,26 @@ class EnhancedPredictionResponse(BaseModel):
     data_quality: str = Field(..., description="Data quality assessment")
     insights: List[str] = Field(..., description="Personalized health insights")
     feature_importance: Optional[dict] = Field(None, description="Importance of each feature in prediction")
+
+
+# ============================================================================
+# PCOS Risk Assessment Models
+# ============================================================================
+
+class PCOSRiskRequest(BaseModel):
+    """Request model for PCOS risk assessment."""
+    irregular_periods: bool = Field(..., description="Do you have irregular periods?")
+    weight_gain: bool = Field(..., description="Have you experienced unexplained weight gain?")
+    excess_hair_growth: bool = Field(..., description="Do you have excess hair growth (hirsutism)?")
+    acne: bool = Field(..., description="Do you have severe acne?")
+    family_history: bool = Field(..., description="Does anyone in your family have PCOS?")
+    dark_skin_patches: bool = Field(..., description="Do you have dark patches of skin?")
+    cycle_length_avg: Optional[int] = Field(None, description="Average cycle length in days")
+
+
+class PCOSRiskResponse(BaseModel):
+    """Response model for PCOS risk assessment."""
+    risk_score: int = Field(..., description="Calculated risk score (0-100)")
+    risk_level: str = Field(..., description="Risk level: Low, Moderate, High")
+    recommendation: str = Field(..., description="Health recommendation based on risk")
+
